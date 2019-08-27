@@ -73,7 +73,7 @@ def build (bld):
     common = bld.objects (
         target = "extensions",
         features = ["cxx"],
-        source = bld.path.ant_glob(['extensions/**/*.cc', 'extensions/**/*.cpp']),
+        source = bld.path.ant_glob(['extensions/**/*.cc', 'extensions/**/*.cpp'], excl=['extensions/**/disabled/*']),
         use = deps,
         )
 

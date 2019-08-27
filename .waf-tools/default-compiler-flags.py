@@ -99,7 +99,8 @@ class GccBasicFlags(CompilerFlags):
     """This class defines base flags that work for gcc and clang compiler"""
     def getDebugFlags(self, conf):
         flags = super(GccBasicFlags, self).getDebugFlags(conf)
-        flags['CXXFLAGS'] += ['-pedantic', '-Wall',
+        # flags['CXXFLAGS'] += ['-pedantic', '-Wall',
+        flags['CXXFLAGS'] += ['-Wall',
                               '-O0',
                               '-g3',
                               '-Werror',
@@ -109,7 +110,8 @@ class GccBasicFlags(CompilerFlags):
 
     def getOptimizedFlags(self, conf):
         flags = super(GccBasicFlags, self).getOptimizedFlags(conf)
-        flags['CXXFLAGS'] += ['-pedantic', '-Wall', '-O2', '-g']
+        # flags['CXXFLAGS'] += ['-pedantic', '-Wall', '-O2', '-g']
+        flags['CXXFLAGS'] += ['-Wall', '-O2', '-g']
         return flags
 
 class GccFlags(GccBasicFlags):
@@ -123,7 +125,7 @@ class GccFlags(GccBasicFlags):
         elif version < (4, 7, 0):
             flags['CXXFLAGS'] += ['-std=c++0x']
         else:
-            flags['CXXFLAGS'] += ['-std=c++11']
+            flags['CXXFLAGS'] += ['-std=c++14']
         if version < (4, 8, 0):
             flags['DEFINES'] += ['_GLIBCXX_USE_NANOSLEEP'] # Bug #2499
         return flags
@@ -138,7 +140,7 @@ class GccFlags(GccBasicFlags):
 class ClangFlags(GccBasicFlags):
     def getGeneralFlags(self, conf):
         flags = super(ClangFlags, self).getGeneralFlags(conf)
-        flags['CXXFLAGS'] += ['-std=c++11',
+        flags['CXXFLAGS'] += ['-std=c++14',
                               '-Wno-error=unneeded-internal-declaration', # Bug #1588
                               '-Wno-error=deprecated-register',
                               ]
